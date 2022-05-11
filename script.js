@@ -8,7 +8,10 @@ function populateGrid(size) {
   let size2 = size * size;
   for (let i = 0; i < size2; i++) {
     let pixel = document.createElement("div");
-    pixel.style.backgroundColor = "#CCC";
+    pixel.addEventListener("mouseover", () => {
+      pixel.style.backgroundColor = "black";
+    });
+    pixel.style.backgroundColor = "white";
     grid.insertAdjacentElement("beforeend", pixel);
   }
 }
