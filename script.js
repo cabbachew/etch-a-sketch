@@ -3,6 +3,7 @@
 // - Right click for eraser
 // - Make responsive to window size
 // - Explore button effects
+// - Each pass darkens block by 10%
 
 let color = "black";
 
