@@ -2,6 +2,7 @@
 // - Adjust grid size using slider
 // - Right click for eraser
 // - Make responsive to window size
+// - Explore button effects
 
 let color = "black";
 
