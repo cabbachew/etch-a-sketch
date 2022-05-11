@@ -8,9 +8,7 @@ function populateGrid(size) {
   let size2 = size * size;
   for (let i = 0; i < size2; i++) {
     let pixel = document.createElement("div");
-    pixel.addEventListener("mouseover", () => {
-      pixel.style.backgroundColor = "black";
-    });
+    pixel.addEventListener("mouseover", colorPixel);
     pixel.style.backgroundColor = "white";
     grid.insertAdjacentElement("beforeend", pixel);
   }
@@ -24,4 +22,9 @@ function resizeGrid(input) {
   } else {
     alert("Must be a number between 2-100");
   }
+}
+
+// Helpers
+function colorPixel() {
+  this.style.backgroundColor = "black";
 }
