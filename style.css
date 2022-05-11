@@ -1,5 +1,9 @@
 .grid {
-  width: 720px;
-  height: 720px;
+  width: 640px;
+  height: 640px;
   display: grid;
+}
+
+.grid div {
+  border: solid;
 }
