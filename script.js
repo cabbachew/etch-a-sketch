@@ -1,3 +1,5 @@
+let color = "black";
+
 function populateGrid(size) {
   let grid = document.querySelector(".grid");
   let pixels = grid.querySelectorAll("div");
@@ -9,6 +11,7 @@ function populateGrid(size) {
   for (let i = 0; i < size2; i++) {
     let pixel = document.createElement("div");
     pixel.addEventListener("mouseover", colorPixel);
+    pixel.addEventListener("mousedown", colorPixel);
     pixel.style.backgroundColor = "white";
     grid.insertAdjacentElement("beforeend", pixel);
   }
@@ -25,6 +28,16 @@ function resizeGrid(input) {
 }
 
 // Helpers
-function colorPixel() {
-  this.style.backgroundColor = "black";
+function colorPixel(e) {
+  if (e.type == "mouseover" && mouseDown) {
+    this.style.backgroundColor = color;
+  }
+}
+
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
+
+function changeColor(newColor) {
+  color = newColor;
 }
