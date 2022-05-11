@@ -7,3 +7,11 @@
 .grid div {
   border: solid 1px;
 }
+
+.error {
+  display: flex;
+}
+
+.isHidden {
+  display: none;
+}

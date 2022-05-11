@@ -22,12 +22,14 @@
         <div>
           <input
             type="text"
+            id="grid-size"
             placeholder="Grid Size"
             value="16"
-            onchange="resizeGrid(this.value)"
+            onchange="validateGridSize(this.value)"
           />
-          <button>Set Size</button>
+          <button onclick="resizeGrid()">Set Size</button>
         </div>
+        <div class="error isHidden">Grid size must be between 2-100</div>
       </div>
     </div>
   </body>

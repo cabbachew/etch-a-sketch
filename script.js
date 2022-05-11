@@ -20,11 +20,20 @@ function populateGrid(size) {
 // Default grid size
 populateGrid(16);
 
-function resizeGrid(input) {
+let errorMessage = document.querySelector(".error");
+
+function validateGridSize(input) {
   if (input > 1 && input < 101) {
-    populateGrid(input);
+    errorMessage.classList.add("isHidden");
   } else {
-    alert("Must be a number between 2-100");
+    errorMessage.classList.remove("isHidden");
+  }
+}
+
+function resizeGrid() {
+  let input = document.querySelector("input");
+  if (errorMessage.classList.contains("isHidden")) {
+    populateGrid(input.value);
   }
 }
 
