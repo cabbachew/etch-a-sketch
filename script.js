@@ -11,3 +11,7 @@ function populateGrid(size) {
 }
 
 populateGrid(16);
+
+function resizeGrid(size) {
+  populateGrid(size);
+}

@@ -20,7 +20,12 @@
           <button>Clear</button>
         </div>
         <div>
-          <input type="text" placeholder="Grid Size" value="16" />
+          <input
+            type="text"
+            placeholder="Grid Size"
+            value="16"
+            onchange="resizeGrid(this.value)"
+          />
           <button>Set Size</button>
         </div>
       </div>
