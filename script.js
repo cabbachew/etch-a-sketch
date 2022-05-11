@@ -1,3 +1,7 @@
+// To-dos
+// - Adjust grid size using slider
+// - Right click for eraser
+
 let color = "black";
 
 function populateGrid(size) {
