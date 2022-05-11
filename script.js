@@ -1,6 +1,7 @@
 // To-dos
 // - Adjust grid size using slider
 // - Right click for eraser
+// - Make responsive to window size
 
 let color = "black";
 
