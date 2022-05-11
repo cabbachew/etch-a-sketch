@@ -11,6 +11,7 @@ function populateGrid(size) {
   for (let i = 0; i < size2; i++) {
     let pixel = document.createElement("div");
     pixel.addEventListener("mouseover", colorPixel);
+    pixel.addEventListener("mousedown", colorPixel);
     pixel.style.backgroundColor = "white";
     grid.insertAdjacentElement("beforeend", pixel);
   }
@@ -29,8 +30,12 @@ function resizeGrid(input) {
 
 // Helpers
 function colorPixel(e) {
-  if (e.type == "mouseover" && mouseDown) {
-    this.style.backgroundColor = color;
+  if ((e.type == "mouseover" && mouseDown) || e.type == "mousedown") {
+    if (color == "random") {
+      this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    } else {
+      this.style.backgroundColor = color;
+    }
   }
 }
 
