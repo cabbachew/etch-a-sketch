@@ -5,7 +5,8 @@ function populateGrid(size) {
   grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-  for (let i = 0; i < size * size; i++) {
+  let size2 = size * size;
+  for (let i = 0; i < size2; i++) {
     let pixel = document.createElement("div");
     pixel.style.backgroundColor = "#CCC";
     grid.insertAdjacentElement("beforeend", pixel);
@@ -14,6 +15,10 @@ function populateGrid(size) {
 
 populateGrid(16);
 
-function resizeGrid(size) {
-  populateGrid(size);
+function resizeGrid(input) {
+  if (input > 1 && input < 101) {
+    populateGrid(input);
+  } else {
+    alert("Must be a number between 2-100");
+  }
 }
