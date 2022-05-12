@@ -2,8 +2,6 @@
 // - Adjust grid size using slider
 // - Make responsive to window size
 // - Explore button effects
-// - Error message disables "Set Size" button
-// - Add keypress event listener for "Enter"
 // - Add color picker [Github: bscottnz]
 // - Add shader and lightener [Github: bscottnz]
 
@@ -46,12 +44,23 @@ function currentGridSize() {
 }
 
 function validateGridSize() {
+  let setSizeButton = document.getElementById("set-size");
   if (isValidSize()) {
     errorMessage.classList.add("isHidden");
+    setSizeButton.disabled = false;
   } else {
     errorMessage.classList.remove("isHidden");
+    setSizeButton.disabled = true; // Disable button
+    document.querySelector("input").value = ""; // Clear input
   }
 }
+
+// Allow user to press enter to set grid size from input
+document.querySelector("input").addEventListener("keydown", (e) => {
+  if (e.code === "Enter") {
+    resizeGrid();
+  }
+});
 
 function resizeGrid() {
   if (isValidSize()) {
@@ -62,7 +71,7 @@ function resizeGrid() {
 // Helpers
 function colorPixel(e) {
   // Tests
-  console.log(this.style.backgroundColor);
+  // console.log(this.style.backgroundColor);
 
   if (
     (e.type === "mousedown" && e.button === 0) ||
