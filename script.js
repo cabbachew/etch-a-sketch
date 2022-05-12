@@ -4,7 +4,7 @@
 let input = document.querySelector("#size-input");
 let setSizeButton = document.getElementById("set-size");
 
-let background = "";
+let background = "EEEEEE";
 let color = "#000000";
 
 // Set background color
@@ -12,16 +12,21 @@ let bkgdColor = document.getElementById("bkgd-color");
 bkgdColor.addEventListener("input", (e) => {
   background = e.target.value;
   fillIn();
+  refreshBorders();
 });
+
+// Set border color
+function refreshBorders() {
+  let borderColor = pSBC(0.5, color, background);
+  const borders = document.querySelectorAll(".grid div");
+  borders.forEach((div) => (div.style.borderColor = borderColor));
+}
 
 function fillIn() {
   let grid = document.querySelector(".grid");
   let pixels = grid.querySelectorAll("div");
   pixels.forEach((div) => {
-    if (
-      div.style.backgroundColor === "" ||
-      div.classList.contains("transparent")
-    ) {
+    if (div.classList.contains("transparent")) {
       div.style.backgroundColor = background;
     }
   });
@@ -32,6 +37,7 @@ let penColor = document.getElementById("pen-color");
 penColor.addEventListener("input", (e) => {
   clearButtons();
   changeColor(e.target.value);
+  refreshBorders();
 });
 
 function clearButtons() {
@@ -89,8 +95,6 @@ input.addEventListener("change", validateGridSize);
 function validateGridSize() {
   if (isValidSize()) {
     errorMessage.classList.add("isHidden");
-    setSizeButton.disabled = false;
-    sizeSlider.disabled = false;
     sizeSlider.value = input.value;
   } else {
     errorMessage.classList.remove("isHidden");
@@ -110,12 +114,12 @@ function resizeGrid() {
   if (isValidSize()) {
     populateGrid();
   }
+  refreshBorders();
 }
 
 const sizeSlider = document.querySelector(".slider");
 sizeSlider.onchange = (e) => {
   input.value = e.target.value;
-  validateGridSize();
 };
 
 // Helpers
