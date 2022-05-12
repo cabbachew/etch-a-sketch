@@ -1,5 +1,6 @@
 // To-dos
 // - Slider with fill and configurable tick marks
+// - Rip color into RGB components using pSBC to handle shading edge cases
 
 let input = document.querySelector("#size-input");
 let setSizeButton = document.getElementById("set-size");
@@ -26,9 +27,6 @@ function fillIn() {
   let grid = document.querySelector(".grid");
   let pixels = grid.querySelectorAll("div");
   pixels.forEach((div) => {
-    if (div.style.backgroundColor === "#000000") {
-      div.classList.add("transparent");
-    }
     if (div.classList.contains("transparent")) {
       div.style.backgroundColor = background;
     }
@@ -149,8 +147,6 @@ function colorPixel(e) {
       this.classList.remove("transparent");
     }
     if (color === "lighter") {
-      // Will remain transparent if already transparent
-      if (this.classList.contains("transparent")) return;
       this.style.backgroundColor = pSBC(
         0.1,
         this.style.backgroundColor,
