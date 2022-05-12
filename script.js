@@ -132,6 +132,10 @@ function colorPixel(e) {
       this.classList.remove("transparent");
     }
     if (color === "darker") {
+      // Will not darken if transparent
+      if (this.style.backgroundColor === "") {
+        this.style.backgroundColor = "#FFFFFF";
+      }
       this.style.backgroundColor = pSBC(
         -0.1,
         this.style.backgroundColor,
@@ -141,6 +145,10 @@ function colorPixel(e) {
       this.classList.remove("transparent");
     }
     if (color === "lighter") {
+      // Wwill not darken if transparent
+      if (this.style.backgroundColor === "") {
+        this.style.backgroundColor = "#FFFFFF";
+      }
       this.style.backgroundColor = pSBC(
         0.1,
         this.style.backgroundColor,
