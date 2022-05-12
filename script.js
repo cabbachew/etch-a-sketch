@@ -1,6 +1,6 @@
 // To-dos
 // - Slider with fill and configurable tick marks
-// - Rip color into RGB components using pSBC to handle shading edge cases
+// - Darken/Lighten edge cases (cannot go to perfect black/white)
 
 let input = document.querySelector("#size-input");
 let setSizeButton = document.getElementById("set-size");
@@ -132,30 +132,39 @@ function colorPixel(e) {
     if (color === "random") {
       this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
       this.classList.remove("transparent");
-    }
-    if (color === "darker") {
-      // Will not darken if transparent
+    } else if (color === "darker") {
+      // Will not work if transparent
       if (this.style.backgroundColor === "") {
-        this.style.backgroundColor = "#FFFFFF";
+        this.style.backgroundColor = "#ffffff";
       }
-      this.style.backgroundColor = pSBC(
-        -0.1,
-        this.style.backgroundColor,
-        false,
-        true
-      );
-      this.classList.remove("transparent");
-    }
-    if (color === "lighter") {
-      this.style.backgroundColor = pSBC(
-        0.1,
-        this.style.backgroundColor,
-        false,
-        true
-      );
-      this.classList.remove("transparent");
-    }
-    if (color === "erase") {
+      if (pSBC(0, this.style.backgroundColor, "c") === "#000000") {
+        this.classList.add("transparent");
+      } else {
+        this.style.backgroundColor = pSBC(
+          -0.1,
+          this.style.backgroundColor,
+          false,
+          true
+        );
+        this.classList.remove("transparent");
+      }
+    } else if (color === "lighter") {
+      // Will not work if transparent
+      if (this.style.backgroundColor === "") {
+        this.style.backgroundColor = "#ffffff";
+      }
+      if (pSBC(0, this.style.backgroundColor, "c") === "#ffffff") {
+        this.classList.add("transparent");
+      } else {
+        this.style.backgroundColor = pSBC(
+          0.1,
+          this.style.backgroundColor,
+          false,
+          true
+        );
+        this.classList.remove("transparent");
+      }
+    } else if (color === "erase") {
       this.style.backgroundColor = background;
       this.classList.add("transparent");
     } else {
