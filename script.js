@@ -2,6 +2,7 @@
 // - Adjust grid size using slider
 // - Make responsive to window size
 // - Explore button effects
+// - Slider with fill and configurable tick marks
 // - Add color picker [Github: bscottnz]
 // - Add shader and lightener [Github: bscottnz]
 
@@ -35,7 +36,7 @@ populateGrid();
 let errorMessage = document.querySelector(".error");
 
 function isValidSize() {
-  return currentGridSize() > 1 && currentGridSize() < 101;
+  return currentGridSize() > 1 && currentGridSize() < 65;
 }
 
 function currentGridSize() {
@@ -51,10 +52,14 @@ function validateGridSize() {
   if (isValidSize()) {
     errorMessage.classList.add("isHidden");
     setSizeButton.disabled = false;
+    sizeSlider.disabled = false;
+    sizeSlider.value = input.value;
   } else {
     errorMessage.classList.remove("isHidden");
     setSizeButton.disabled = true; // Disable button
+    sizeSlider.disabled = true; // Disable slider
     input.value = ""; // Clear input
+    sizeSlider.value = 16; // reset slider
   }
 }
 
@@ -70,6 +75,12 @@ function resizeGrid() {
     populateGrid();
   }
 }
+
+const sizeSlider = document.querySelector(".slider");
+sizeSlider.onchange = (e) => {
+  input.value = e.target.value;
+  validateGridSize();
+};
 
 // Helpers
 function colorPixel(e) {

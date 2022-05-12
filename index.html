@@ -21,10 +21,30 @@
           <button onclick="clearGrid()">Clear</button>
         </div>
         <div>
-          <input type="text" placeholder="Grid Size" value="16" />
+          <input type="text" placeholder="enter a number" value="16" />
+          <span> OR </span>
+          <input
+            class="slider"
+            type="range"
+            value="16"
+            min="2"
+            max="64"
+            list="tickmarks"
+          />
+          <datalist id="tickmarks">
+            <option value="2" label="2"></option>
+            <option value="8"></option>
+            <option value="16" label="16"></option>
+            <option value="24"></option>
+            <option value="32" label="32"></option>
+            <option value="40"></option>
+            <option value="48" label="48"></option>
+            <option value="56"></option>
+            <option value="64" label="64"></option>
+          </datalist>
           <button id="set-size" onclick="resizeGrid()">Set Size</button>
         </div>
-        <div class="error isHidden">Grid size must be between 2-100</div>
+        <div class="error isHidden">Grid size must be between 2-64</div>
       </div>
     </div>
   </body>
