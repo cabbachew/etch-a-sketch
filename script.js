@@ -1,6 +1,6 @@
 // To-dos
 // - Slider with fill and configurable tick marks
-// - Add color picker [Github: bscottnz] for both pen and background
+// - Add color picker for both pen and background [Github: bscottnz]
 // - Add shader and lightener [Github: bscottnz]
 
 let input = document.querySelector("#size-input");
@@ -81,8 +81,8 @@ function validateGridSize() {
 }
 
 // Allow user to press enter to set grid size from input
-document.querySelector("input").addEventListener("keydown", (e) => {
-  if (e.code === "Enter") {
+document.getElementById("size-input").addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
     resizeGrid();
   }
 });
