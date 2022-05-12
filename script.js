@@ -4,7 +4,7 @@
 let input = document.querySelector("#size-input");
 let setSizeButton = document.getElementById("set-size");
 
-let background = "EEEEEE";
+let background = "";
 let color = "#000000";
 
 // Set background color
@@ -26,6 +26,9 @@ function fillIn() {
   let grid = document.querySelector(".grid");
   let pixels = grid.querySelectorAll("div");
   pixels.forEach((div) => {
+    if (div.style.backgroundColor === "#000000") {
+      div.classList.add("transparent");
+    }
     if (div.classList.contains("transparent")) {
       div.style.backgroundColor = background;
     }
@@ -124,9 +127,6 @@ sizeSlider.onchange = (e) => {
 
 // Helpers
 function colorPixel(e) {
-  // Tests
-  // console.log(this.style.backgroundColor);
-
   if (
     (e.type === "mousedown" && e.button === 0) ||
     (e.type === "mouseover" && isLeftClicked)
@@ -149,10 +149,8 @@ function colorPixel(e) {
       this.classList.remove("transparent");
     }
     if (color === "lighter") {
-      // Wwill not darken if transparent
-      if (this.style.backgroundColor === "") {
-        this.style.backgroundColor = "#FFFFFF";
-      }
+      // Will remain transparent if already transparent
+      if (this.classList.contains("transparent")) return;
       this.style.backgroundColor = pSBC(
         0.1,
         this.style.backgroundColor,
