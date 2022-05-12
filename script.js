@@ -1,12 +1,22 @@
 // To-dos
 // - Slider with fill and configurable tick marks
-// - Add color picker for both pen and background [Github: bscottnz]
 // - Add shader and lightener [Github: bscottnz]
 
 let input = document.querySelector("#size-input");
 let setSizeButton = document.getElementById("set-size");
 
-let color = "black";
+let background = "#FFFFFF";
+let color = "#000000";
+
+let bkgdColor = document.getElementById("bkgd-color");
+bkgdColor.addEventListener("input", (e) => {
+  background = e.target.value;
+
+  let grid = document.querySelector(".grid");
+  let pixels = grid.querySelectorAll("div");
+  populateGrid();
+});
+
 let penColor = document.getElementById("pen-color");
 // Using 'input' event instead of 'change' to make sure first pixel is new color
 penColor.addEventListener("input", (e) => {
@@ -43,7 +53,7 @@ function populateGrid() {
     let pixel = document.createElement("div");
     pixel.addEventListener("mouseover", colorPixel);
     pixel.addEventListener("mousedown", colorPixel);
-    pixel.style.backgroundColor = "white";
+    pixel.style.backgroundColor = background;
     grid.insertAdjacentElement("beforeend", pixel);
   }
 }
@@ -117,7 +127,7 @@ function colorPixel(e) {
     (e.type === "mousedown" && e.button === 2) ||
     (e.type === "mouseover" && isRightClicked)
   ) {
-    this.style.backgroundColor = "white";
+    this.style.backgroundColor = background;
   }
 }
 
