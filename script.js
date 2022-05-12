@@ -56,8 +56,6 @@ function validateGridSize() {
     sizeSlider.value = input.value;
   } else {
     errorMessage.classList.remove("isHidden");
-    setSizeButton.disabled = true; // Disable button
-    sizeSlider.disabled = true; // Disable slider
     input.value = ""; // Clear input
     sizeSlider.value = 16; // reset slider
   }
@@ -81,6 +79,17 @@ sizeSlider.onchange = (e) => {
   input.value = e.target.value;
   validateGridSize();
 };
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((item) => item.addEventListener("click", toggleActiveButton));
+function toggleActiveButton() {
+  if (this.textContent === "Clear" || this.textContent === "Set Size") {
+    buttons.forEach((item) => item.classList.remove("active"));
+    return;
+  }
+  buttons.forEach((item) => item.classList.remove("active"));
+  this.classList.add("active");
+}
 
 // Helpers
 function colorPixel(e) {
