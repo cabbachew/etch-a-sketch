@@ -1,13 +1,15 @@
 // To-dos
 // - Adjust grid size using slider
-// - Right click for eraser
 // - Make responsive to window size
 // - Explore button effects
+// - Right click for eraser + erase while dragging(!)
 // - Each pass darkens block by 10%
+// - Error message disables "Set Size" button
 
 let color = "black";
 
-function populateGrid(size) {
+function populateGrid() {
+  let size = currentGridSize();
   let grid = document.querySelector(".grid");
   let pixels = grid.querySelectorAll("div");
   pixels.forEach((div) => div.remove()); // remove all existing divs within grid
@@ -25,12 +27,25 @@ function populateGrid(size) {
 }
 
 // Default grid size
-populateGrid(16);
+const DEFAULT_GRID_SIZE = 16;
+populateGrid();
 
 let errorMessage = document.querySelector(".error");
 
-function validateGridSize(input) {
-  if (input > 1 && input < 101) {
+function isValidSize() {
+  return currentGridSize() > 1 && currentGridSize() < 101;
+}
+
+function currentGridSize() {
+  let input = document.querySelector("input").value;
+  if (input == "") {
+    return DEFAULT_GRID_SIZE;
+  }
+  return input;
+}
+
+function validateGridSize() {
+  if (isValidSize()) {
     errorMessage.classList.add("isHidden");
   } else {
     errorMessage.classList.remove("isHidden");
@@ -38,15 +53,20 @@ function validateGridSize(input) {
 }
 
 function resizeGrid() {
-  let input = document.querySelector("input");
-  if (errorMessage.classList.contains("isHidden")) {
-    populateGrid(input.value);
+  if (isValidSize()) {
+    populateGrid();
   }
 }
 
 // Helpers
 function colorPixel(e) {
+  console.log(e.type);
+  console.log(e.button);
   if ((e.type == "mouseover" && mouseDown) || e.type == "mousedown") {
+    if (e.button === 2) {
+      this.style.backgroundColor = "white";
+      return false;
+    }
     if (color == "random") {
       this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     } else {
