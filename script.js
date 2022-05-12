@@ -2,7 +2,6 @@
 // - Adjust grid size using slider
 // - Make responsive to window size
 // - Explore button effects
-// - Right click for eraser + erase while dragging(!)
 // - Each pass darkens block by 10%
 // - Error message disables "Set Size" button
 // - Add keypress event listener for "Enter"
@@ -65,22 +64,38 @@ function colorPixel(e) {
   console.log(e.type);
   console.log(e.button);
 
-  if ((e.type == "mouseover" && mouseDown) || e.type == "mousedown") {
-    if (e.button === 2) {
-      this.style.backgroundColor = "white";
-      return false;
-    }
-    if (color == "random") {
+  if (
+    (e.type === "mousedown" && e.button === 0) ||
+    (e.type === "mouseover" && isLeftClicked)
+  ) {
+    if (color === "random") {
       this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     } else {
       this.style.backgroundColor = color;
     }
+  } else if (
+    (e.type === "mousedown" && e.button === 2) ||
+    (e.type === "mouseover" && isRightClicked)
+  ) {
+    this.style.backgroundColor = "white";
   }
 }
 
-let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
+let isLeftClicked = false;
+let isRightClicked = false;
+
+document.body.onmousedown = (e) => {
+  if (e.button === 0) {
+    isLeftClicked = true;
+  } else if (e.button === 2) {
+    isRightClicked = true;
+  }
+};
+
+document.body.onmouseup = () => {
+  isLeftClicked = false;
+  isRightClicked = false;
+};
 
 function changeColor(newColor) {
   color = newColor;
