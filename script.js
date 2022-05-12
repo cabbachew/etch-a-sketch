@@ -5,6 +5,9 @@
 // - Add color picker [Github: bscottnz]
 // - Add shader and lightener [Github: bscottnz]
 
+let input = document.querySelector("input");
+let setSizeButton = document.getElementById("set-size");
+
 let color = "black";
 
 function populateGrid() {
@@ -36,22 +39,22 @@ function isValidSize() {
 }
 
 function currentGridSize() {
-  let input = document.querySelector("input").value;
-  if (input == "") {
+  if (input.value === "") {
     return DEFAULT_GRID_SIZE;
   }
-  return input;
+  return input.value;
 }
 
+input.addEventListener("change", validateGridSize);
+
 function validateGridSize() {
-  let setSizeButton = document.getElementById("set-size");
   if (isValidSize()) {
     errorMessage.classList.add("isHidden");
     setSizeButton.disabled = false;
   } else {
     errorMessage.classList.remove("isHidden");
     setSizeButton.disabled = true; // Disable button
-    document.querySelector("input").value = ""; // Clear input
+    input.value = ""; // Clear input
   }
 }
 
