@@ -1,7 +1,4 @@
 // To-dos
-// - Adjust grid size using slider
-// - Make responsive to window size
-// - Explore button effects
 // - Slider with fill and configurable tick marks
 // - Add color picker [Github: bscottnz]
 // - Add shader and lightener [Github: bscottnz]
