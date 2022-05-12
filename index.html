@@ -14,14 +14,25 @@
       <div class="content">
         <div class="grid" oncontextmenu="return false"></div>
         <div class="buttons">
-          <button onclick="changeColor('black')">Black</button>
+          <input
+            type="color"
+            class="color-picker"
+            id="pen-color"
+            value="#000000"
+          />
+          <button class="active" onclick="changeColor('black')">Black</button>
           <!-- <button onclick="changeColor('darker')">Darker</button> -->
           <button onclick="changeColor('random')">Random</button>
           <button onclick="changeColor('white')">Eraser</button>
           <button onclick="clearGrid()">Clear</button>
         </div>
         <div class="grid-settings">
-          <input type="text" placeholder="enter a number" value="16" />
+          <input
+            id="size-input"
+            type="text"
+            placeholder="enter a number"
+            value="16"
+          />
           <span> or </span>
           <input
             class="slider"

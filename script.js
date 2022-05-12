@@ -1,12 +1,34 @@
 // To-dos
 // - Slider with fill and configurable tick marks
-// - Add color picker [Github: bscottnz]
+// - Add color picker [Github: bscottnz] for both pen and background
 // - Add shader and lightener [Github: bscottnz]
 
-let input = document.querySelector("input");
+let input = document.querySelector("#size-input");
 let setSizeButton = document.getElementById("set-size");
 
 let color = "black";
+let penColor = document.getElementById("pen-color");
+// Using 'input' event instead of 'change' to make sure first pixel is new color
+penColor.addEventListener("input", (e) => {
+  clearButtons();
+  changeColor(e.target.value);
+});
+
+function clearButtons() {
+  buttons.forEach((item) => item.classList.remove("active"));
+}
+
+// Button functionality
+const buttons = document.querySelectorAll("button");
+buttons.forEach((item) => item.addEventListener("click", toggleActiveButton));
+function toggleActiveButton() {
+  if (this.textContent === "Clear" || this.textContent === "Set Size") {
+    buttons.forEach((item) => item.classList.remove("active"));
+    return;
+  }
+  buttons.forEach((item) => item.classList.remove("active"));
+  this.classList.add("active");
+}
 
 function populateGrid() {
   let size = currentGridSize();
@@ -76,17 +98,6 @@ sizeSlider.onchange = (e) => {
   input.value = e.target.value;
   validateGridSize();
 };
-
-const buttons = document.querySelectorAll("button");
-buttons.forEach((item) => item.addEventListener("click", toggleActiveButton));
-function toggleActiveButton() {
-  if (this.textContent === "Clear" || this.textContent === "Set Size") {
-    buttons.forEach((item) => item.classList.remove("active"));
-    return;
-  }
-  buttons.forEach((item) => item.classList.remove("active"));
-  this.classList.add("active");
-}
 
 // Helpers
 function colorPixel(e) {
