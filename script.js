@@ -2,9 +2,10 @@
 // - Adjust grid size using slider
 // - Make responsive to window size
 // - Explore button effects
-// - Each pass darkens block by 10%
 // - Error message disables "Set Size" button
 // - Add keypress event listener for "Enter"
+// - Add color picker [Github: bscottnz]
+// - Add shader and lightener [Github: bscottnz]
 
 let color = "black";
 
@@ -61,8 +62,7 @@ function resizeGrid() {
 // Helpers
 function colorPixel(e) {
   // Tests
-  console.log(e.type);
-  console.log(e.button);
+  console.log(this.style.backgroundColor);
 
   if (
     (e.type === "mousedown" && e.button === 0) ||
