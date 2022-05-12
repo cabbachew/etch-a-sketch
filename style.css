@@ -5,6 +5,7 @@
 }
 
 .grid {
+  cursor: pointer;
   width: 600px;
   height: 600px;
   display: grid;

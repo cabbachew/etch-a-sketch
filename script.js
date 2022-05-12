@@ -5,6 +5,7 @@
 // - Right click for eraser + erase while dragging(!)
 // - Each pass darkens block by 10%
 // - Error message disables "Set Size" button
+// - Add keypress event listener for "Enter"
 
 let color = "black";
 
@@ -60,8 +61,10 @@ function resizeGrid() {
 
 // Helpers
 function colorPixel(e) {
+  // Tests
   console.log(e.type);
   console.log(e.button);
+
   if ((e.type == "mouseover" && mouseDown) || e.type == "mousedown") {
     if (e.button === 2) {
       this.style.backgroundColor = "white";
