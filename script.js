@@ -1,6 +1,7 @@
 // To-dos
 // - Slider with fill and configurable tick marks
 // - Darken/Lighten edge cases (cannot go to perfect black/white)
+//   Can use pSBC to check for RGB values above/below threshold
 
 let input = document.querySelector("#size-input");
 let setSizeButton = document.getElementById("set-size");
