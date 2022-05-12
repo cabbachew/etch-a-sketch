@@ -42,12 +42,10 @@ function clearButtons() {
 const buttons = document.querySelectorAll("button");
 buttons.forEach((item) => item.addEventListener("click", toggleActiveButton));
 function toggleActiveButton() {
-  if (this.textContent === "Clear" || this.textContent === "Set Size") {
+  if (this.textContent !== "Clear" && this.textContent !== "Set Size") {
     buttons.forEach((item) => item.classList.remove("active"));
-    return;
+    this.classList.add("active");
   }
-  buttons.forEach((item) => item.classList.remove("active"));
-  this.classList.add("active");
 }
 
 function populateGrid() {
@@ -190,7 +188,11 @@ function changeColor(newColor) {
 function clearGrid() {
   let grid = document.querySelector(".grid");
   let pixels = grid.querySelectorAll("div");
-  pixels.forEach((div) => (div.style.backgroundColor = ""));
+  pixels.forEach((div) => {
+    div.style.backgroundColor = "";
+    div.classList.add("transparent");
+  });
+  background = "";
 }
 
 // pSBC.js Version 4.1
