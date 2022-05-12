@@ -15,7 +15,7 @@ bkgdColor.addEventListener("input", (e) => {
   refreshBorders();
 });
 
-// Set border color
+// Set border color by blending pen and background color
 function refreshBorders() {
   let borderColor = pSBC(0.5, color, background);
   const borders = document.querySelectorAll(".grid div");
