@@ -3,7 +3,6 @@
 // - Darken/Lighten edge cases (cannot go to perfect black/white)
 //   Can use pSBC to check for RGB values above/below threshold
 // - Undo + Redo functionality
-// - Return to pen color when button is clicked (without choosing new color)
 
 let input = document.querySelector("#size-input");
 let setSizeButton = document.getElementById("set-size");
@@ -37,11 +36,18 @@ function fillIn() {
 }
 
 let penColor = document.getElementById("pen-color");
+let penMemory = "#00274C";
 // Using 'input' event instead of 'change' to make sure first pixel is new color
 penColor.addEventListener("input", (e) => {
   clearButtons();
   changeColor(e.target.value);
+  penMemory = e.target.value;
   refreshBorders();
+});
+
+penColor.addEventListener("click", () => {
+  clearButtons();
+  changeColor(penMemory);
 });
 
 function clearButtons() {
