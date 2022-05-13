@@ -45,6 +45,7 @@ penColor.addEventListener("input", (e) => {
   refreshBorders();
 });
 
+// Restore pen color on button click
 penColor.addEventListener("click", () => {
   clearButtons();
   changeColor(penMemory);
